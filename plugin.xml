@@ -1,0 +1,22 @@
+<plugin name='javascript-url-mappings' version='0.1' grailsVersion='1.2.2 &gt; *'>
+  <author>Dan Lynn</author>
+  <authorEmail>dan@danlynn.com</authorEmail>
+  <title>A Grails plugin to provide client-side reverse URL mappings.</title>
+  <description>\
+Brief description of the plugin.
+</description>
+  <documentation>http://grails.org/plugin/grails-javascript-url-mappings</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+    <resource>grails.plugin.javascripturlmappings.AController</resource>
+    <resource>grails.plugin.javascripturlmappings.MappingsTagLib</resource>
+  </resources>
+  <dependencies>
+    <resolvers>
+      <resolver type='grailsPlugins' name='grailsPlugins' />
+    </resolvers>
+  </dependencies>
+  <behavior />
+</plugin>
