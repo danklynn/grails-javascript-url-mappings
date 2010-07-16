@@ -1,9 +1,12 @@
-A Grails plugin to provide client-side reverse URL mappings.
+A Grails plugin to provide client-side reverse URL mappings, via a taglib that provides automatic javascript.
 
 #### Example usage (jQuery)
 
+    <g:urlMappings />
+    <script type="text/javascript">
     var url = g.createLink({controller: 'news', action: 'fetch', params: {since: new Date()}});
     $('#myDiv').load(url);
+    </script>
 
 #### Current Status
 
