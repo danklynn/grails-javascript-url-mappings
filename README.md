@@ -18,6 +18,8 @@ Currently reverse-maps all controllers and actions by name only, and handles par
 * Get project under functional test to test javascript
 * Add support for named mappings
 * Add support for mapping wildcards to reverse-map params (e.g. "controller/action?/id?")
+* Support the "url" attribute of createLink
+* Support absolute urls
 
 #### Contributors
 
