@@ -1,3 +1,8 @@
+import org.springframework.beans.BeanWrapper
+import org.springframework.beans.PropertyAccessorFactory
+import grails.plugin.javascripturlmappings.AllMappingsHolder
+
+
 class GrailsJavascriptUrlMappingsGrailsPlugin {
     // the plugin version
     def version = "0.1"
@@ -7,13 +12,14 @@ class GrailsJavascriptUrlMappingsGrailsPlugin {
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
-            "grails-app/views/error.gsp"
+            "grails-app/views/error.gsp",
+            "grails-app/controllers/**"
     ]
 
     // TODO Fill in these fields
-    def author = "Your name"
-    def authorEmail = ""
-    def title = "Plugin summary/headline"
+    def author = "Dan Lynn"
+    def authorEmail = "dan@danlynn.com"
+    def title = "A Grails plugin to provide client-side reverse URL mappings."
     def description = '''\\
 Brief description of the plugin.
 '''
@@ -26,7 +32,22 @@ Brief description of the plugin.
     }
 
     def doWithSpring = {
-        // TODO Implement runtime spring config (optional)
+        def controllers = findAllControllers(application)
+
+        allMappingsHolder(AllMappingsHolder) {
+            delegate.controllers = controllers 
+        }
+    }
+
+    def findAllControllers(application) {
+        application.controllerClasses.collect {c ->
+            [
+                name: "${c.logicalPropertyName}",
+                actions: PropertyAccessorFactory.forBeanPropertyAccess(c.newInstance()).propertyDescriptors.collect {
+                            c.getPropertyOrStaticPropertyOrFieldValue(it.name, Closure) ? it.name : null
+                        }.findAll {it != null}
+            ]
+        }
     }
 
     def doWithDynamicMethods = { ctx ->
@@ -34,7 +55,6 @@ Brief description of the plugin.
     }
 
     def doWithApplicationContext = { applicationContext ->
-        // TODO Implement post initialization spring config (optional)
     }
 
     def onChange = { event ->
