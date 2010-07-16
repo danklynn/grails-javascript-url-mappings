@@ -15,8 +15,6 @@
 
 package grails.plugin.javascripturlmappings
 
-import org.springframework.context.ApplicationContext
-
 class MappingsTagLib {
     def grailsUrlMappingsHolder
     def allMappingsHolder
