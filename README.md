@@ -1,4 +1,5 @@
-A Grails plugin to provide client-side reverse URL mappings, via a taglib that provides automatic javascript.
+A Grails plugin to provide client-side reverse URL mappings outside of GSP files.
+Just put one taglib call in your layout and your static javascript files can make use of Grails' UrlMappings
 
 #### Example usage (jQuery)
 
