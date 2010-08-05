@@ -12,7 +12,7 @@ function findBestMatch(controller, action) {
     }
   }
 
-  return "${appRoot}" + controller + "/";
+  return "${appRoot}" + controller;
 };
 
 g.createLink = function(options) {
@@ -25,11 +25,34 @@ g.createLink = function(options) {
   //todo var mapping = options.mapping
   //todo absolute mappings
 
+  var match = findBestMatch(controller, action);
+  if (match.match(/__ID__/)) {
+    match = match.replace(/\/__ID__/,  params.id ? '/' + params.id :  '');
+    delete params['id'];
+  }
+
   var keyPairs = [];
   for (var key in params) {
     keyPairs.push(encodeURIComponent(key) + "=" + encodeURIComponent(params[key]));
   }
 
-  return findBestMatch(controller, action) + (keyPairs.length ? "?" + keyPairs.join('&') : '');
+  return match + (keyPairs.length ? "?" + keyPairs.join('&') : '');
+};
+
+g.resource = function(options) {
+  options = options || {};
+  var dir = options.dir || '';
+  var file = options.file || '';
+
+  var path = '';
+  if (dir && file) {
+    path = dir + '/' + file;
+  } else if (dir) {
+    path = dir;
+  }  else if (file) {
+    path = file;
+  }
+
+  return ("${appRoot}" + path).replace(/\/{2}/g, '/');
 };
 </script>

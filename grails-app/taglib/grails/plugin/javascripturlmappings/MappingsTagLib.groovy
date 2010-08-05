@@ -27,7 +27,7 @@ class MappingsTagLib {
                 mappings << [
                         controller: controller.name,
                         action: action,
-                        url: grailsUrlMappingsHolder.getReverseMapping(controller.name, action, null).createURL([controller: controller.name, action: action], null)
+                        url: grailsUrlMappingsHolder.getReverseMapping(controller.name, action, null).createURL([controller: controller.name, action: action, id: '__ID__'], null)
                 ]
             }
 
