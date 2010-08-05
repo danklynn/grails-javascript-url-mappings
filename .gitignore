@@ -5,3 +5,4 @@
 target/
 web-app/WEB-INF/
 *.iml
+docs/
