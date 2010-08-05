@@ -33,7 +33,7 @@ class MappingsTagLib {
 
         }
 
-        out << render(template: '/javascriptUrlMappings', model: [
+        out << render(template: "${pluginContextPath}/grails-app/views/javascriptUrlMappings", model: [
                 mappings: "[${mappings.collect{renderMappingJS(it)}.join(',')}]",
                 appRoot: g.resource(dir:"/")
         ])
